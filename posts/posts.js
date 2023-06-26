@@ -22,8 +22,18 @@ function postLoad(array) {
       poster.className = "p-2";
       let innerPostDiv2 = document.createElement("div");
       innerPostDiv2.className = "d-flex flex-row-reverse";
-      let likeCount = document.createElement("p");
-      likeCount.className = "p-2 text-body-secondary";
+
+      if (bearer.username == post.username) {
+        let deleteButton = document.createElement("button");
+        deleteButton.className = "p-2 btn btn-warning btn-sm mb-3"
+        deleteButton.innerText = "Delete"
+        // deleteButton.value = post._id
+        deleteButton.onclick = function(){deletePost(post._id)};
+        innerPostDiv2.append(deleteButton);
+      };
+      
+      let likeCount = document.createElement("button");
+      
       let datePosted = document.createElement("p");
       datePosted.className = "p-2 text-body-secondary";
 
@@ -33,10 +43,22 @@ function postLoad(array) {
 
       postP.innerText = post.text;
       poster.innerText = post.username;
-      likeCount.innerText = "Likes: " + post.likes.length;
-      datePosted.innerText = dateOfPost;
 
-      // (post.date.getMonth() + 1) + "/" + post.date.getDay() + "/" + post.date.getFullYear()
+      likeCount.innerText = "Likes: " + post.likes.length;
+      
+
+      if (post.likes.find(likes => likes.username === bearer.username)) {
+        likeCount.className = "p-2 btn btn-danger btn-sm mb-3 me-2";
+        let postLikeId = post.likes.filter(object => object.username === bearer.username).map(object => object._id)
+        likeCount.onclick = function(){deleteLike(postLikeId)};
+        console.log(postLikeId);
+      }
+      else {
+        likeCount.className = "p-2 btn btn-secondary btn-sm mb-3 me-2";
+        likeCount.onclick = function(){likePost(post._id)};
+      }
+      
+      datePosted.innerText = dateOfPost;
 
       innerPostDiv.append(poster, postP);
       innerPostDiv2.append(likeCount, datePosted);
@@ -49,9 +71,6 @@ function fetchPosts() {
   const options = {
     method: "GET",
     headers: {
-      // This header specifies the type of content we're sending.
-      // This is required for endpoints expecting us to send
-      // JSON data.
       "Content-Type": "application/json",
       Authorization: `Bearer ${bearer.token}`,
     },
@@ -70,9 +89,6 @@ function post(data) {
   const options = {
     method: "POST",
     headers: {
-      // This header specifies the type of content we're sending.
-      // This is required for endpoints expecting us to send
-      // JSON data.
       "Content-Type": "application/json",
       Authorization: `Bearer ${bearer.token}`,
     },
@@ -105,4 +121,61 @@ logoutButton.onclick = function (event) {
     event.preventDefault();
 
     logout();
+}
+
+function deletePost(value) {
+    const options = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${bearer.token}`,
+        },
+      };
+      console.log(options);
+      fetch(apiBaseURL + `/api/posts/${value}`, options)
+        .then((response) => response.json())
+        .then((posts) => {
+          window.location.assign("index.html");
+          return posts;
+        });
+}
+
+
+function likePost(likeId) {
+    console.log(likeId);
+    let obj = {postId: likeId};
+    const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${bearer.token}`,
+        },
+        body: JSON.stringify(obj)
+      };
+      console.log(options);
+      fetch(apiBaseURL + "/api/likes", options)
+        .then((response) => response.json())
+        .then((posts) => {
+          window.location.assign("index.html");
+          return posts;
+        });
+}
+
+function deleteLike(likeId) {
+    console.log(likeId);
+
+    const options = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${bearer.token}`,
+        },
+      };
+      console.log(options);
+      fetch(apiBaseURL + `/api/likes/${likeId}`, options)
+        .then((response) => response.json())
+        .then((posts) => {
+          window.location.assign("index.html");
+          return posts;
+        });
 }
