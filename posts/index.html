@@ -1,50 +1,77 @@
 <!-- POSTS page -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
 
     <!-- Global CSS (CSS rules you want applied to all pages) -->
-    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/global.css" />
 
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="./posts.css">
+    <link rel="stylesheet" href="./posts.css" />
 
     <title>/POSTS</title>
 
     <!-- Run BEFORE page is finished loading (before window.onload): -->
     <script src="../scripts/auth.js"></script>
     <script>
-        if (isLoggedIn() === false) window.location.replace("/");
+      if (isLoggedIn() === false) window.location.replace("/");
     </script>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="d-flex flex-column justify-content-between" style="margin-bottom: 1em;">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid" >
+          <ul class="navbar-nav mr-auto">
+            <li class="navitem">[NAME OF WEBSITE]</li>
+            <li class="navitem">
+              <a href="./profile.html" class="nav-link"> Profile </a>
+            </li>
+            <li class="navitem">
+              <a href="./posts" class="nav-link"> Posts </a>
+            </li>
+          </ul>
 
-    <header>
-        
-        <h1>POSTS PAGE</h1>
-    </header>
+          <ul
+            class="navbar-nav mr-auto justify-content-end"
+            style="text-align: right"
+          >
+            <li class="navitem">
+              <button id="logoutButton" class="btn btn-primary">Log Out</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <header></header>
 
     <main>
-        <div id="postBox" class="container">
-            <form id="box" class="form-group">
-                <textarea name="message" rows="10" cols="30" placeholder="Write your post..." class="form-control" id="textArea"></textarea>
-                <button id="postButton" type="submit" class="form-control">Post</button>
-            </form>
-        </div>
-        <div id="posts" class="container">
-
-        </div>
+      <div id="postBox" class="container">
+        <form id="box" class="form-group">
+          <textarea
+            name="message"
+            rows="10"
+            cols="30"
+            placeholder="Write your post..."
+            class="form-control"
+            id="textArea"
+          ></textarea>
+          <button id="postButton" type="submit" class="form-control">
+            Post
+          </button>
+        </form>
+      </div>
+      <div id="posts" class="container"></div>
     </main>
 
     <footer></footer>
 
     <!-- Page-specific code -->
     <script src="./posts.js"></script>
-</body>
+  </body>
 </html>
