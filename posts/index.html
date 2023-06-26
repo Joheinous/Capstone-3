@@ -22,13 +22,33 @@
     <script>
       if (isLoggedIn() === false) window.location.replace("/");
     </script>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="d-flex flex-column justify-content-between" style="margin-bottom: 1em;">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid" >
+          <ul class="navbar-nav mr-auto">
+            <li class="navitem">[NAME OF WEBSITE]</li>
+            <li class="navitem">
+              <a href="../profile.html" class="nav-link"> Profile </a>
+            </li>
+            <li class="navitem">
+              <a href="/" class="nav-link"> Posts </a>
+            </li>
+          </ul>
 
-    <header>
-        
-        <h1>POSTS PAGE</h1>
-    </header>
+          <ul
+            class="navbar-nav mr-auto justify-content-end"
+            style="text-align: right"
+          >
+            <li class="navitem">
+              <button id="logoutButton" class="btn btn-primary">Log Out</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <header></header>
 
     <main>
       <div id="postBox" class="container">

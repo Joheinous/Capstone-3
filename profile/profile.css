@@ -2,3 +2,12 @@
     border-radius: 25px;
     margin: 1em 0 1em 0;
 }
+
+.profilePic {
+height: 100px;
+border-radius: 50%;
+}
+
+#welcome{
+    text-align: center;
+}

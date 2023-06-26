@@ -1,6 +1,5 @@
 "use strict";
 
-
 const loginData = getLoginData();
 console.log(loginData);
 
@@ -14,7 +13,7 @@ function welcomeUser() {
   let paraBody = document.querySelector("h2");
   let para1 = document.createElement("p");
 
-  para1.innerText = `Welcome ${loginData.username}`;
+  para1.innerText = `Welcome ${loginData.username}!`;
   paraBody.appendChild(para1);
 }
 
@@ -89,6 +88,63 @@ function createPost() {
     .then((response) => response.json())
     .then((post) => loadPosts(post));
 }
+
+function profileBuilder(loginData) {
+  console.log(loginData);
+  let outputDiv = document.querySelector("#profile");
+  let profilePic = document.createElement("img")
+  profilePic.src = `https://ca.slack-edge.com/T0266FRGM-U2Q173U05-g863c2a865d7-512`
+  profilePic.className = "profilePic"
+  let username = document.createElement("h2");
+  username.className = "bg-dark mr-auto";
+  username.innerText = loginData.username;
+  let fullname = document.createElement("h3");
+  fullname.innerText = loginData.fullName;
+  let about = document.createElement("h5");
+  about.innertext = loginData.about;
+  let joinDate = document.createElement("h5");
+  joinDate.innerText = `Joined: ${loginData.createdAt}`
+  let editAccount = document.createElement("button")
+  editAccount.innerText = `EDIT ACCOUNT`
+
+  outputDiv.append(profilePic, username, fullname, about, joinDate, editAccount);
+}
+
+function fetchUser() {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${loginData.token}`,
+    },
+  };
+  console.log(options);
+  fetch(apiBaseURL + `/api/users/${loginData.username}`, options)
+    .then((response) => response.json())
+    .then((posts) => {
+      console.log(posts);
+      profileBuilder(posts);
+    });
+}
+fetchUser();
+
+function editProfile() {
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${loginData.about}`,
+      },
+    };
+    console.log(options);
+    fetch(apiBaseURL + `/api/users/${loginData.username}`, options)
+      .then((response) => response.json())
+      .then((posts) => {
+        console.log(posts);
+        profileBuilder(posts);
+      });
+  }
+
 window.onload = (event) => {
   fetchPosts();
   welcomeUser();
