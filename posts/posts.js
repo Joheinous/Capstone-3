@@ -99,3 +99,10 @@ box.onsubmit = function (event) {
   // Time to actually process the login using the function from auth.js!
   post(postData);
 };
+logoutButton.onclick = function (event) {
+    // Prevent the form from refreshing the page,
+    // as it will do by default when the Submit event is triggered:
+    event.preventDefault();
+
+    logout();
+}
