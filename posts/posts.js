@@ -22,6 +22,16 @@ function postLoad(array) {
       poster.className = "p-2";
       let innerPostDiv2 = document.createElement("div");
       innerPostDiv2.className = "d-flex flex-row-reverse";
+
+      if (bearer.username == post.username) {
+        let deleteButton = document.createElement("button");
+        deleteButton.className = "p-2 btn btn-warning btn-sm mb-3"
+        deleteButton.innerText = "Delete"
+        // deleteButton.value = post._id
+        deleteButton.onclick = function(){deletePost(post._id)};
+        innerPostDiv2.append(deleteButton);
+      };
+      
       let likeCount = document.createElement("p");
       likeCount.className = "p-2 text-body-secondary";
       let datePosted = document.createElement("p");
@@ -36,8 +46,6 @@ function postLoad(array) {
       likeCount.innerText = "Likes: " + post.likes.length;
       datePosted.innerText = dateOfPost;
 
-      // (post.date.getMonth() + 1) + "/" + post.date.getDay() + "/" + post.date.getFullYear()
-
       innerPostDiv.append(poster, postP);
       innerPostDiv2.append(likeCount, datePosted);
       outerPostDiv.append(innerPostDiv, innerPostDiv2);
@@ -49,9 +57,6 @@ function fetchPosts() {
   const options = {
     method: "GET",
     headers: {
-      // This header specifies the type of content we're sending.
-      // This is required for endpoints expecting us to send
-      // JSON data.
       "Content-Type": "application/json",
       Authorization: `Bearer ${bearer.token}`,
     },
@@ -70,9 +75,6 @@ function post(data) {
   const options = {
     method: "POST",
     headers: {
-      // This header specifies the type of content we're sending.
-      // This is required for endpoints expecting us to send
-      // JSON data.
       "Content-Type": "application/json",
       Authorization: `Bearer ${bearer.token}`,
     },
@@ -106,3 +108,23 @@ logoutButton.onclick = function (event) {
 
     logout();
 }
+
+function deletePost(value) {
+    const options = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${bearer.token}`,
+        },
+      };
+      console.log(options);
+      fetch(apiBaseURL + `/api/posts/${value}`, options)
+        .then((response) => response.json())
+        .then((posts) => {
+          window.location.assign("index.html");
+          return posts;
+        });
+}
+
+
+
