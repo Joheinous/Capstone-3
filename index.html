@@ -38,20 +38,48 @@
     </header> -->
 
     <main>
-      <div id="center">
-        <form id="login" class="form-group">
+      <div id="center" class="vh-100 d-flex flex-row container align-items-center justify-content-center">
+        <div class="item" style="width: 300px;">
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+            est dolore deserunt quas odio similique delectus officiis veniam,
+            voluptas asperiores perspiciatis cumque doloribus autem ipsam
+            obcaecati aliquam eligendi, nesciunt dolorem.
+          </p>
+        </div>
+        <form id="login" class="form-group" class="item">
           <div>
             <label for="username">Username</label>
-            <input type="text" id="username" minlength="3" class="form-control" />
+            <input
+              type="text"
+              id="username"
+              minlength="3"
+              class="form-control"
+            />
           </div>
 
           <div>
             <label for="password">Password</label>
-            <input type="password" id="password" minlength="6" class="form-control" />
+            <input
+              type="password"
+              id="password"
+              minlength="6"
+              class="form-control"
+            />
           </div>
 
-          <button id="loginButton" type="submit" class="form-control">Login</button>
+          <button id="loginButton" type="submit" class="form-control">
+            Login
+          </button>
+
+          <p class="small">
+            Don't have an account?
+            <a href="registration.html" class="link-danger">Register</a>
+          </p>
+
+          <a href="forgot.html" class="link-danger">Forgot Password?</a>
         </form>
+        
       </div>
     </main>
 
