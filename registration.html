@@ -4,37 +4,59 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/registration.css" />
     <title>Registration</title>
   </head>
   <body>
     <header>
-      <h1>Welcome to <code>YOUR MICROBLOG NETWORK</code></h1>
-  </header>
+      
+    </header>
 
-  <main>
-
-      <form id="register" class="form-group">
-        <div>
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" minlength="2" class="form-control">
-        </div>
+    <main>
+      <div id="center">
+        <form id="register" class="form-group">
           <div>
-              <label for="username">Username</label>
-              <input type="text" id="username" minlength="3" class="form-control">
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              minlength="2"
+              class="form-control"
+            />
+          </div>
+          <div>
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              minlength="3"
+              class="form-control"
+            />
           </div>
 
           <div>
-              <label for="password">Password</label>
-              <input type="password" id="password" minlength="6" class="form-control">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              minlength="6"
+              class="form-control"
+            />
           </div>
 
-          <button id="registerButton" type="submit" class="btn btn-primary">Register</button>
-      </form>
+          <button id="registerButton" type="submit" class="form form-control">
+            Register
+          </button>
 
-  </main>
+          <p id="loginBt" class="small">
+            Have an account?
+            <a href="index.html" class="link-danger">Login</a>
+          </p>
+        </form>
+      </div>
+    </main>
   </body>
   <script src="scripts/registration.js"></script>
 </html>

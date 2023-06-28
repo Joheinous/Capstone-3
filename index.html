@@ -38,20 +38,50 @@
     </header> -->
 
     <main>
-      <div id="center">
-        <form id="login" class="form-group">
+      <div id="center" class="vh-100 d-flex flex-row container align-items-center justify-content-center">
+        <div class="item bg-dark rounded p-4 shadow" style="width: 300px; margin: 1.5em;">
+          <h4>Welcome</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, similique! Dolorum dolore, voluptatum, earum nemo est quia exercitationem odio molestias, eveniet aspernatur amet?
+          </p>
+          <p>
+            To get started, please login or create an account.
+          </p>
+        </div>
+        <div class="bg-dark rounded p-5 shadow">
+        <form id="login" class="form-group" class="item">
           <div>
             <label for="username">Username</label>
-            <input type="text" id="username" minlength="3" class="form-control" />
+            <input
+              type="text"
+              id="username"
+              minlength="3"
+              class="form-control"
+            />
           </div>
 
           <div>
             <label for="password">Password</label>
-            <input type="password" id="password" minlength="6" class="form-control" />
+            <input
+              type="password"
+              id="password"
+              minlength="6"
+              class="form-control"
+            />
           </div>
 
-          <button id="loginButton" type="submit" class="form-control">Login</button>
+          <button id="loginButton" type="submit" class="form-control">
+            Login
+          </button>
+
+          <p class="small">
+            Don't have an account?
+            <a href="registration.html" class="link-danger">Register</a>
+          </p>
+
+          <a href="forgot.html" class="link-danger">Forgot Password?</a>
         </form>
+      </div>
       </div>
     </main>
 
