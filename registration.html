@@ -15,15 +15,16 @@
     </header>
 
     <main>
-      <div id="center">
-        <form id="register" class="form-group">
+      <div id="center" class="vh-100 d-flex flex-row container align-items-center justify-content-center">
+        <div class="item bg-dark shadow rounded p-5 d-flex flex-row align-items-center justify-content-center">
+          <form id="register" class="form-group">
           <div>
             <label for="fullName">Full Name</label>
             <input
               type="text"
               id="fullName"
               minlength="2"
-              class="form-control"
+              class="form-control bg-light"
             />
           </div>
           <div>
@@ -32,7 +33,7 @@
               type="text"
               id="username"
               minlength="3"
-              class="form-control"
+              class="form-control bg-light"
             />
           </div>
 
@@ -42,19 +43,21 @@
               type="password"
               id="password"
               minlength="6"
-              class="form-control"
+              class="form-control bg-light"
             />
           </div>
 
-          <button id="registerButton" type="submit" class="form form-control">
+          <button id="registerButton" type="submit" class="form-control btn btn-outline-secondary">
             Register
           </button>
 
           <p id="loginBt" class="small">
             Have an account?
-            <a href="index.html" class="link-danger">Login</a>
+            <a href="index.html" class="link-success">Login</a>
           </p>
         </form>
+        </div>
+        
       </div>
     </main>
   </body>

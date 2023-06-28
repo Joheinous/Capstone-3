@@ -42,6 +42,8 @@ function postLoad(array) {
       });
 
 
+      
+
       if (post.likes.find(likes => likes.username === bearer.username)) {
         likeCount.className = "p-2 btn btn-danger btn-sm mb-3 me-2";
         let postLikeId = post.likes.filter(object => object.username === bearer.username).map(object => object._id)
@@ -58,7 +60,7 @@ function postLoad(array) {
       likeCount.innerText = "Likes: " + post.likes.length;
       datePosted.innerText = dateOfPost;
 
-      innerPostDiv.append(poster, postP);
+      innerPostDiv.append(linkedPoster, postP);
       innerPostDiv2.append(likeCount, datePosted);
       outerPostDiv.append(innerPostDiv, innerPostDiv2);
       postBody.appendChild(outerPostDiv);
