@@ -11,13 +11,27 @@ logoutButton.onclick = function (event) {
   logout();
 };
 
-// function welcomeUser() {
-//   let paraBody = document.querySelector("h2");
-//   let para1 = document.createElement("p");
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
 
-//   para1.innerText = `Welcome ${loginData.username}!`;
-//   paraBody.appendChild(para1);
-// }
+window.onclick = function (event) {
+  if (!event.target.matches(".dropbtn")) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains("show")) {
+        openDropdown.classList.remove("show");
+      }
+    }
+  }
+};
+
+function dropDownUser() {
+  let paraBody = document.querySelector("#dropbtn");
+  paraBody.innerText = `${loginData.username}`;
+}
 
 function fetchPosts() {
   const options = {
@@ -61,128 +75,138 @@ function loadPosts(array) {
 
       if (loginData.username == post.username) {
         let deleteButton = document.createElement("button");
-        deleteButton.className = "p-2 btn btn-warning btn-sm mb-3"
-        deleteButton.innerText = "Delete"
+        deleteButton.className = "p-2 btn btn-warning btn-sm mb-3";
+        deleteButton.innerText = "Delete";
         // deleteButton.value = post._id
-        deleteButton.onclick = function(){deletePost(post._id)};
+        deleteButton.onclick = function () {
+          deletePost(post._id);
+        };
         innerPostDiv2.append(deleteButton);
-      };
+      }
 
-      
       let dateOfPost = new Date(post.createdAt).toLocaleString("en-US", {
         hour12: true,
       });
-      
-
-      if (post.likes.find(likes => likes.username === loginData.username)) {
-        likeCount.className = "p-2 btn btn-danger btn-sm mb-3 me-2";
-        let postLikeId = post.likes.filter(object => object.username === loginData.username).map(object => object._id)
-        likeCount.onclick = function(){deleteLike(postLikeId)};
-        console.log(postLikeId);
-      }
-      else {
-        likeCount.className = "p-2 btn btn-secondary btn-sm mb-3 me-2";
-        likeCount.onclick = function(){likePost(post._id)};
-      }
-      
 
       postP.innerText = post.text;
       poster.innerText = post.username;
+
+      let linkedPoster = document.createElement("a");
+
+      linkedPoster.href = `/profile/index.html?username=${loginData.username}`;
+      linkedPoster.appendChild(poster);
+
+      if (post.likes.find((likes) => likes.username === loginData.username)) {
+        likeCount.className = "p-2 btn btn-danger btn-sm mb-3 me-2";
+        let postLikeId = post.likes
+          .filter((object) => object.username === loginData.username)
+          .map((object) => object._id);
+        likeCount.onclick = function () {
+          deleteLike(postLikeId);
+        };
+        console.log(postLikeId);
+      } else {
+        likeCount.className = "p-2 btn btn-secondary btn-sm mb-3 me-2";
+        likeCount.onclick = function () {
+          likePost(post._id);
+        };
+      }
+
       likeCount.innerText = "Likes: " + post.likes.length;
       datePosted.innerText = dateOfPost;
 
-      innerPostDiv.append(poster, postP);
+      innerPostDiv.append(linkedPoster, postP);
       innerPostDiv2.append(likeCount, datePosted);
       outerPostDiv.append(innerPostDiv, innerPostDiv2);
       postBody.appendChild(outerPostDiv);
     });
 }
 
-function createPost(data) {
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${loginData.token}`,
-      },
-      body: JSON.stringify(data),
-    };
-    console.log(options);
-    fetch(apiBaseURL + "/api/posts", options)
-      .then((response) => response.json())
-      .then((posts) => {
-        window.location.assign("/profile/index.html");
-        return posts;
-      });
-  }
-  box.onsubmit = function (event) {
-    event.preventDefault();
-  
-    const postData = {
-      text: box.textArea.value,
-    };
-  
-    box.postButton.disabled = true;
-  
-    // Time to actually process the login using the function from auth.js!
-    post(postData);
+function post(data) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${loginData.token}`,
+    },
+    body: JSON.stringify(data),
+  };
+  console.log(options);
+  fetch(apiBaseURL + "/api/posts", options)
+    .then((response) => response.json())
+    .then((posts) => {
+      window.location.assign("/profile/index.html");
+      return posts;
+    });
+}
+
+box.onsubmit = function (event) {
+  event.preventDefault();
+
+  const postData = {
+    text: box.textArea.value,
   };
 
+  box.postButton.disabled = true;
+
+  // Time to actually process the login using the function from auth.js!
+  post(postData);
+};
 
 function likePost(likeId) {
-    console.log(likeId);
-    let obj = {postId: likeId};
-    const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${loginData.token}`,
-        },
-        body: JSON.stringify(obj)
-      };
-      console.log(options);
-      fetch(apiBaseURL + "/api/likes", options)
-        .then((response) => response.json())
-        .then((posts) => {
-          window.location.assign("/profile/index.html");
-          return posts;
-        });
+  console.log(likeId);
+  let obj = { postId: likeId };
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${loginData.token}`,
+    },
+    body: JSON.stringify(obj),
+  };
+  console.log(options);
+  fetch(apiBaseURL + "/api/likes", options)
+    .then((response) => response.json())
+    .then((posts) => {
+      window.location.assign("/profile/index.html");
+      return posts;
+    });
 }
 
 function deleteLike(likeId) {
-    console.log(likeId);
+  console.log(likeId);
 
-    const options = {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${loginData.token}`,
-        },
-      };
-      console.log(options);
-      fetch(apiBaseURL + `/api/likes/${likeId}`, options)
-        .then((response) => response.json())
-        .then((posts) => {
-          window.location.assign("/profile/index.html");
-          return posts;
-        });
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${loginData.token}`,
+    },
+  };
+  console.log(options);
+  fetch(apiBaseURL + `/api/likes/${likeId}`, options)
+    .then((response) => response.json())
+    .then((posts) => {
+      window.location.assign("/profile/index.html");
+      return posts;
+    });
 }
 
 function deletePost(value) {
-    const options = {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${loginData.token}`,
-        },
-      };
-      console.log(options);
-      fetch(apiBaseURL + `/api/posts/${value}`, options)
-        .then((response) => response.json())
-        .then((posts) => {
-          window.location.assign("/profile/index.html");
-          return posts;
-        });
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${loginData.token}`,
+    },
+  };
+  console.log(options);
+  fetch(apiBaseURL + `/api/posts/${value}`, options)
+    .then((response) => response.json())
+    .then((posts) => {
+      window.location.assign("/profile/index.html");
+      return posts;
+    });
 }
 
 function profileBuilder(user) {
@@ -263,5 +287,5 @@ function saveUser(e) {
 window.onload = (event) => {
   fetchPosts();
   fetchUser();
-  //   welcomeUser();
+  dropDownUser();
 };
