@@ -41,11 +41,6 @@ function postLoad(array) {
         hour12: true,
       });
 
-      postP.innerText = post.text;
-      poster.innerText = post.username;
-
-      likeCount.innerText = "Likes: " + post.likes.length;
-      
 
       if (post.likes.find(likes => likes.username === bearer.username)) {
         likeCount.className = "p-2 btn btn-danger btn-sm mb-3 me-2";
@@ -58,6 +53,9 @@ function postLoad(array) {
         likeCount.onclick = function(){likePost(post._id)};
       }
       
+      postP.innerText = post.text;
+      poster.innerText = post.username;
+      likeCount.innerText = "Likes: " + post.likes.length;
       datePosted.innerText = dateOfPost;
 
       innerPostDiv.append(poster, postP);

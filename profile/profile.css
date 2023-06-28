@@ -11,3 +11,12 @@ border-radius: 50%;
 #welcome{
     text-align: center;
 }
+
+#profile{
+    text-align: center;
+}
+
+#header-pic{
+    height: 40px;
+    border-radius: 50%;
+}
