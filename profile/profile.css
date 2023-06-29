@@ -1,0 +1,85 @@
+.roundedPost {
+    border-radius: 25px;
+    margin: 1em 0 1em 0;
+}
+
+.profilePic {
+height: 100px;
+border-radius: 50%;
+}
+
+
+#profile{
+    text-align: center;
+}
+
+#header-pic{
+    height: 40px;
+    border-radius: 50%;
+}
+
+#edit-submit{
+    text-align: center;
+}
+
+.dropbtn {
+    background-color: rgb(7, 54, 66);
+    color: rgb(131, 155, 161);
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color:rgb(7, 54, 66);
+    min-width: 100px;
+    max-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 0;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: rgb(131, 155, 161);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color:rgb(0,43,54);}
+  
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {display:block;}
+
+ .profilePic{
+   margin-bottom: 10px;
+ }
+/* 
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+  }
+  
+  .fa {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  } */
+  
