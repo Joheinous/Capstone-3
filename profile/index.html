@@ -69,34 +69,35 @@
 
     <main>
       <div id="profile" class="container"></div>
+      <div id="profile" onclick="hideOrShowDetails()">
+        <button type="button" class="btn btn-dark">EDIT ACCOUNT</button>
+      </div>
 
-      <!-- <div class="card">
-        <img src="img.jpg" alt="profilePic" style="width: 100%" />
-        <h1></h1>
-        <p class="title">Common [website name] User</p>
-        <p>ABOUT ME</p>
-        <a href="#"><i class="fa fa-dribbble"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-facebook"></i></a>
-      </div> -->
+      <form id="edit-submit" onsubmit="saveUser(event)" style="display: none" ;>
+        <div id="postBox" class="container">
+          <label for="full-name-input">Full Name</label>
+          <input
+            class="form-control"
+            id="full-name-input"
+            type="text"
+            placeholder="Full Name"
+          />
+        </div>
 
-      <form onsubmit="saveUser(event)" ;>
-        <label for="full-name-input">Full Name</label>
-        <input id="full-name-input" type="text" placeholder="Full Name" />
-        <div>
+        <div id="postBox" class="container">
           <label for="about-input">About</label>
           <textarea
+            class="form-control"
             name="about-input"
             id="about-input"
-            cols="30"
-            rows="6"
+            cols="7"
+            rows="3"
             placeholder="About"
           ></textarea>
         </div>
 
         <div class="action-bar">
-          <button type="submit">EDIT PROFILE</button>
+          <button type="submit" class="btn btn-dark">SAVE</button>
         </div>
       </form>
 
@@ -115,8 +116,6 @@
           </button>
         </form>
       </div>
-      <div id="posts" class="container"></div>
-
       <div id="posts" class="container"></div>
     </main>
 

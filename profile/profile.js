@@ -207,6 +207,7 @@ function deletePost(value) {
 function profileBuilder(user) {
   console.log(user);
   let outputDiv = document.querySelector("#profile");
+  outputDiv.innerHTML = "";
   let profilePic = document.createElement("img");
   profilePic.src = `https://flyinryanhawks.org/wp-content/uploads/2016/08/profile-placeholder.png`;
   profilePic.className = "profilePic";
@@ -222,9 +223,7 @@ function profileBuilder(user) {
     user.createdAt
   ).toLocaleDateString()}`;
 
-  //   let editAccount = document.createElement("button");
-  //     editAccount.onclick = editProfile(event);
-  //   editAccount.innerText = `EDIT ACCOUNT`;
+
 
   outputDiv.append(
     profilePic,
@@ -232,7 +231,6 @@ function profileBuilder(user) {
     fullname,
     about,
     joinDate
-    // editAccount
   );
 }
 
@@ -264,18 +262,33 @@ function saveUser(e) {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${loginData.token}`,
-      body: JSON.stringify(user),
     },
+    body: JSON.stringify(user),
   };
   console.log(options);
   fetch(apiBaseURL + `/api/users/${loginData.username}`, options)
     .then((response) => response.json())
     .then((user) => {
       console.log(user);
-      // profileBuilder(user);
-    //   sessionStorage.setItem("message", "Successfully saved.");
+      profileBuilder(user);
+      //   sessionStorage.setItem("message", "Successfully saved.");
       //   window.location.replace("/profile/index.html");
     });
+}
+
+let showDetails = false;
+function hideOrShowDetails() {
+  const detailsSection = document.getElementById("edit-submit");
+  showDetails = !showDetails;
+  toggleElement(detailsSection, showDetails);
+}
+
+function toggleElement(htmlElement, show) {
+  if (show) {
+    htmlElement.style.display = "block";
+  } else {
+    htmlElement.style.display = "none";
+  }
 }
 
 window.onload = (event) => {

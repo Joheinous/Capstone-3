@@ -18,6 +18,10 @@ border-radius: 50%;
     border-radius: 50%;
 }
 
+#edit-submit{
+    text-align: center;
+}
+
 .dropbtn {
     background-color: rgb(7, 54, 66);
     color: rgb(131, 155, 161);
