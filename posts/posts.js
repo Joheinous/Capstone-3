@@ -179,3 +179,81 @@ function deleteLike(likeId) {
           return posts;
         });
 }
+
+// let lightmode = document.querySelector("#lightmode");
+
+// function switchDisplayMode() {
+//     console.log(lightmode);
+//     if (lightmode.checked) {
+//         let dark = document.querySelectorAll(".bg-dark")
+//         console.log(dark);
+//         for (const element of dark) {
+//             element.classList.add("bg-light");
+//             element.classList.remove("bg-dark");
+//         }
+//     }
+//     else if (lightmode.checked == false) {
+//         let light = document.querySelectorAll(".bg-light");
+//         for (const element of light) {
+//             element.classList.add("bg-dark");
+//             element.classList.remove("bg-light");
+//         }
+//     }
+//     else console.log("Error! Mayday! Mayday!");
+// }
+
+// lightmode.onchange = (event) => {
+
+//     switchDisplayMode();
+
+// }
+
+
+function switchDisplayMode() {
+  console.log(lightmode);
+  //make varaibles for every color that will change
+  if (lightmode.checked) {
+      // let dark = document.querySelectorAll(".bg-dark")
+      let navcolordark = document.querySelectorAll(".navColorDark")
+      for (const element of navcolordark) {
+          element.classList.add("navColorLight");
+          element.classList.remove("navColorDark");
+        }
+        let bodycolordark = document.querySelectorAll(".bodyColorDark")
+        for (const element of bodycolordark) {
+          element.classList.add("bodyColorLight");
+          element.classList.remove("bodyColorDark");
+        }
+
+        let divcolordark = document.querySelectorAll(".divColorDark")
+        for (const element of divcolordark) {
+          element.classList.add("divColorLight");
+          element.classList.remove("divColorDark");
+        }          
+  }
+  else if (lightmode.checked == false) {
+      let light = document.querySelectorAll(".navColorLight");
+      for (const element of light) {
+          element.classList.add("navColorDark");
+          element.classList.remove("navColorLight");
+      }
+      let bodycolordark = document.querySelectorAll(".bodyColorLight")
+      for (const element of bodycolordark) {
+        element.classList.add("bodyColorDark");
+        element.classList.remove("bodyColorLight");
+      }
+
+      let divcolordark = document.querySelectorAll(".divColorLight")
+      for (const element of divcolordark) {
+        element.classList.add("divColorDark");
+        element.classList.remove("divColorLight");
+      } 
+  }
+  else console.log("Error! Mayday! Mayday!");
+}
+
+lightmode.onchange = (event) => {
+
+  switchDisplayMode();
+
+}
