@@ -9,8 +9,6 @@ function postLoad(array) {
   let postBody = document.querySelector("#posts");
 
   array
-    .slice()
-    .reverse()
     .forEach((post) => {
       let outerPostDiv = document.createElement("div");
       outerPostDiv.className = "container roundedPost bg-light";
@@ -100,7 +98,7 @@ function post(data) {
     body: JSON.stringify(data),
   };
   console.log(options);
-  fetch(apiBaseURL + "/api/posts", options)
+  fetch(apiBaseURL + "/api/posts?limit=1000&offset=0", options)
     .then((response) => response.json())
     .then((posts) => {
       window.location.assign("index.html");
