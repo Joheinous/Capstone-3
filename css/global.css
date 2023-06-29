@@ -16,3 +16,61 @@
 :root {
     font-size: 1rem;
 }
+
+/* light mode */
+.navColorLight{
+    color: #FBFFDC;
+    background-color: #9394a5 ;
+}
+
+.bodyColorLight{
+    background-color: #d2d3db;
+}
+
+.divColorLight{
+    background-color: #e4e5f1;
+}
+
+/* night mode */
+.navColorDark{
+    color: #00b3b3;
+    background-color:  #395B64;
+}
+.bodyColorDark{
+    background-color: #2C3333;
+}
+
+.divColorDark{
+    background-color: #6d8585;
+}
+
+#spinner   {  
+           
+    animation: spin 1s linear infinite;
+    color: red;
+}
+  
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+  
+.inline{
+display: flex;
+}
+.center{
+flex:left;
+}
+.spinner i{
+margin-top: 10px;
+margin-left: 50px;
+
+
+}
+
+.UpButton{
+    float: right;
+    display: inline; /* the default for span */
+
+}

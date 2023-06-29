@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -23,9 +24,9 @@
       if (isLoggedIn() === false) window.location.replace("/");
     </script>
   </head>
-  <body>
-    <div class="d-flex flex-column justify-content-between" style="margin-bottom: 1em;">
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <body class="bodyColorDark">
+    <div class="d-flex flex-column justify-content-between navColorDark" style="margin-bottom: 1em;">
+      <nav class="navbar navbar-expand-md">
         <div class="container-fluid" >
           <ul class="navbar-nav mr-auto">
             <li class="navitem">[NAME OF WEBSITE]</li>
@@ -41,6 +42,16 @@
             class="navbar-nav mr-auto justify-content-end"
             style="text-align: right"
           >
+          <div class="form-check form-switch mx-4">
+            <li class="navitem">
+              <input type="checkbox" class="form-check-input" id="lightmode">
+              <label for="lightmode">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sun-fill" viewBox="0 0 16 16">
+                  <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                </svg>                
+              </label>
+            </li>
+          </div>
             <li class="navitem">
               <button id="logoutButton" class="btn btn-primary">Log Out</button>
             </li>
@@ -51,25 +62,38 @@
     <header></header>
 
     <main>
-      <div id="postBox" class="container">
-        <form id="box" class="form-group">
-          <textarea
-            name="message"
-            rows="10"
-            cols="30"
-            placeholder="Write your post..."
-            class="form-control"
-            id="textArea"
-          ></textarea>
-          <button id="postButton" type="submit" class="form-control">
-            Post
-          </button>
-        </form>
-      </div>
-      <div id="posts" class="container"></div>
-    </main>
+      
+      <div id="postBox" class="container card divColorDark">
+          <div class="card-body containerColor">
+            <form id="box" class="form-group containerColor">
+              <textarea
+                name="message"
+                rows="10"
+                cols="30"
+                placeholder="Write your post..."
+                class="form-control"
+                id="textArea"
+              ></textarea>
+              <button id="postButton" type="submit" class="form-control">
+                Post
+              </button>
+            </form>          
+          </div>
+          <div id="posts" class="container"></div>
+          <p>
+            <a href="#top" class="navColorDark">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-arrow-up-fill UpButton" viewBox="0 0 16 16">
+                <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM7.5 6.707 6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707z"/>
+              </svg>
+            </a>
+          </p>
+        </div>
 
-    <footer></footer>
+      </main>
+
+    <footer>
+
+    </footer>
 
     <!-- Page-specific code -->
     <script src="./posts.js"></script>
