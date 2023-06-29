@@ -45,6 +45,11 @@ function postLoad(array) {
       poster.innerText = post.username;
 
       likeCount.innerText = "Likes: " + post.likes.length;
+
+      let linkedPoster = document.createElement("a");
+
+      linkedPoster.href = `../profile.html?username=${post.username}`
+      linkedPoster.appendChild(poster);
       
 
       if (post.likes.find(likes => likes.username === bearer.username)) {
@@ -60,7 +65,7 @@ function postLoad(array) {
       
       datePosted.innerText = dateOfPost;
 
-      innerPostDiv.append(poster, postP);
+      innerPostDiv.append(linkedPoster, postP);
       innerPostDiv2.append(likeCount, datePosted);
       outerPostDiv.append(innerPostDiv, innerPostDiv2);
       postBody.appendChild(outerPostDiv);
