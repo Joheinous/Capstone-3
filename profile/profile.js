@@ -1,6 +1,5 @@
 "use strict";
 
-const usernameInput = document.querySelector("#username-input");
 const fullNameInput = document.querySelector("#full-name-input");
 const aboutInput = document.querySelector("#about-input");
 const loginData = getLoginData();
@@ -37,9 +36,6 @@ function fetchPosts() {
   const options = {
     method: "GET",
     headers: {
-      // This header specifies the type of content we're sending.
-      // This is required for endpoints expecting us to send
-      // JSON data.
       "Content-Type": "application/json",
       Authorization: `Bearer ${loginData.token}`,
     },
@@ -149,7 +145,6 @@ box.onsubmit = function (event) {
 
   box.postButton.disabled = true;
 
-  // Time to actually process the login using the function from auth.js!
   post(postData);
 };
 
@@ -221,23 +216,23 @@ function profileBuilder(user) {
   let fullname = document.createElement("h3");
   fullname.innerText = user.fullName;
   let about = document.createElement("h5");
-  about.innertext = user.about;
+  about.innerText = user.bio;
   let joinDate = document.createElement("h5");
   joinDate.innerText = `Joined: ${new Date(
     user.createdAt
   ).toLocaleDateString()}`;
 
-  let editAccount = document.createElement("button");
-  //   editAccount.onclick = editProfile(event);
-  editAccount.innerText = `EDIT ACCOUNT`;
+  //   let editAccount = document.createElement("button");
+  //     editAccount.onclick = editProfile(event);
+  //   editAccount.innerText = `EDIT ACCOUNT`;
 
   outputDiv.append(
     profilePic,
     username,
     fullname,
     about,
-    joinDate,
-    editAccount
+    joinDate
+    // editAccount
   );
 }
 
@@ -260,9 +255,8 @@ function saveUser(e) {
   e.preventDefault();
 
   const user = {
-    username: usernameInput.value,
     fullName: fullNameInput.value,
-    about: aboutInput.value,
+    bio: aboutInput.value,
   };
 
   const options = {
@@ -274,13 +268,13 @@ function saveUser(e) {
     },
   };
   console.log(options);
-  fetch(apiBaseURL + `/api/users/${user.username}`, options)
+  fetch(apiBaseURL + `/api/users/${loginData.username}`, options)
     .then((response) => response.json())
     .then((user) => {
       console.log(user);
-      //   profileBuilder(user);
-      sessionStorage.setItem("message", "Successfully saved.");
-      window.location.replace("/profile/index.html");
+      // profileBuilder(user);
+    //   sessionStorage.setItem("message", "Successfully saved.");
+      //   window.location.replace("/profile/index.html");
     });
 }
 

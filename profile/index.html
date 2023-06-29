@@ -17,7 +17,7 @@
     <title>/PROFILE</title>
 
     <!-- Run BEFORE page is finished loading (before window.onload): -->
-    <script src="../scripts/auth.js"></script>
+    <script src="/scripts/auth.js"></script>
     <script>
       if (isLoggedIn() === false) window.location.replace("/");
     </script>
@@ -47,15 +47,18 @@
                     id="header-pic"
                     src="https://flyinryanhawks.org/wp-content/uploads/2016/08/profile-placeholder.png"
                 /></a>
-            
+
                 <div class="dropdown">
-                    <button id="dropbtn" onclick="myFunction()" class="dropbtn"></button>
-                    <div id="myDropdown" class="dropdown-content">
-                      <a href="/profile/index.html">PROFILE</a>
-                      <a id="logoutButton" href="#">LOG OUT</a>
-                      <a href="#">SETTINGS</a>
-                    </div>
+                  <button
+                    id="dropbtn"
+                    onclick="myFunction()"
+                    class="dropbtn"
+                  ></button>
+                  <div id="myDropdown" class="dropdown-content">
+                    <a href="/profile/index.html">PROFILE</a>
+                    <a id="logoutButton" href="#">LOG OUT</a>
                   </div>
+                </div>
               </li>
             </ul>
           </div>
@@ -65,46 +68,55 @@
     </header>
 
     <main>
-      <div id="profile" class="container">
+      <div id="profile" class="container"></div>
 
-      </div>
+      <!-- <div class="card">
+        <img src="img.jpg" alt="profilePic" style="width: 100%" />
+        <h1></h1>
+        <p class="title">Common [website name] User</p>
+        <p>ABOUT ME</p>
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+      </div> -->
 
-      <!-- <form onsubmit="saveUser(event)";>
+      <form onsubmit="saveUser(event)" ;>
+        <label for="full-name-input">Full Name</label>
+        <input id="full-name-input" type="text" placeholder="Full Name" />
+        <div>
+          <label for="about-input">About</label>
+          <textarea
+            name="about-input"
+            id="about-input"
+            cols="30"
+            rows="6"
+            placeholder="About"
+          ></textarea>
+        </div>
 
-          <label for="username-input">Username</label>
-          <input id="username-input" type="text" placeholder="username" />
-
-          <label for="full-name-input">Full Name</label>
-          <input id="full-name-input" type="text" placeholder="Full Name" />
-          <div>
-            <label for="about-input">About</label>
-            <textarea name="about-input" id="about-input" cols="30" rows="6" placeholder="About"></textarea
-            >
-          </div>
-
-          <div class="action-bar">
-            <button type="submit">EDIT PROFILE</button>
-          </div> -->
-
+        <div class="action-bar">
+          <button type="submit">EDIT PROFILE</button>
+        </div>
       </form>
-      
-        <div id="postBox" class="container">
-            <form id="box" class="form-group">
-              <textarea
-                name="message"
-                rows="0"
-                cols="30"
-                placeholder="Write your post..."
-                class="form-control"
-                id="textArea"
-              ></textarea>
-              <button id="postButton" type="submit" class="form-control">
-                Post
-              </button>
-            </form>
-          </div>
-          <div id="posts" class="container"></div>
-          
+
+      <div id="postBox" class="container">
+        <form id="box" class="form-group">
+          <textarea
+            name="message"
+            rows="0"
+            cols="30"
+            placeholder="Write your post..."
+            class="form-control"
+            id="textArea"
+          ></textarea>
+          <button id="postButton" type="submit" class="form-control">
+            Post
+          </button>
+        </form>
+      </div>
+      <div id="posts" class="container"></div>
+
       <div id="posts" class="container"></div>
     </main>
 
