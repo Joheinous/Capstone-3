@@ -4,6 +4,9 @@
 const loginJSON = window.localStorage.getItem("login-data");
 const bearer = JSON.parse(loginJSON);
 
+let profileLink = document.querySelector("#profileLink")
+profileLink.href = `../profile/index.html?username=${bearer.username}`
+
 function postLoad(array) {
   console.log(array);
   let postBody = document.querySelector("#posts");
@@ -48,7 +51,7 @@ function postLoad(array) {
 
       let linkedPoster = document.createElement("a");
 
-      linkedPoster.href = `../profile.html?username=${post.username}`;
+      linkedPoster.href = `../profile/index.html?username=${post.username}`;
       linkedPoster.appendChild(poster);
 
       if (post.likes.find((likes) => likes.username === bearer.username)) {
@@ -85,7 +88,7 @@ function fetchPosts() {
     },
   };
   console.log(options);
-  fetch(apiBaseURL + "/api/posts", options)
+  fetch(apiBaseURL + "/api/posts?limit=1000&offset=0", options)
     .then((response) => response.json())
     .then((posts) => postLoad(posts));
 }
@@ -104,7 +107,7 @@ function post(data) {
     body: JSON.stringify(data),
   };
   console.log(options);
-  fetch(apiBaseURL + "/api/posts?limit=1000&offset=0", options)
+  fetch(apiBaseURL + "/api/posts", options)
     .then((response) => response.json())
     .then((posts) => {
       window.location.assign("index.html");

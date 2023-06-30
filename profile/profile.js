@@ -3,11 +3,31 @@
 const fullNameInput = document.querySelector("#full-name-input");
 const aboutInput = document.querySelector("#about-input");
 const loginData = getLoginData();
+let searchParams = new URLSearchParams(window.location.search)
+let user = searchParams.get('username')
+let username
+console.log(user);
+if (loginData.username !== user) {
+   username = user;
+  
+}
+else {
+  username = loginData.username;
+ 
+}
+
+if (loginData.username !== user) {
+  let hide = document.querySelector("#postBox2");
+  let hide2 = document.querySelector("#editButton");
+  hide.style.display = "none";
+  hide2.style.display = "none";
+}
+
 
 logoutButton.onclick = function (event) {
   event.preventDefault();
 
-  logout();
+  logout(); 
 };
 
 function myFunction() {
@@ -27,6 +47,8 @@ window.onclick = function (event) {
   }
 };
 
+
+
 function dropDownUser() {
   let paraBody = document.querySelector("#dropbtn");
   paraBody.innerText = `${loginData.username}`;
@@ -41,7 +63,7 @@ function fetchPosts() {
     },
   };
   console.log(options);
-  fetch(apiBaseURL + `/api/posts?username=${loginData.username}`, options)
+  fetch(apiBaseURL + `/api/posts?username=${username}`, options)
     .then((response) => response.json())
     .then((posts) => loadPosts(posts || []));
 }
@@ -212,7 +234,7 @@ function profileBuilder(user) {
   profilePic.src = `https://flyinryanhawks.org/wp-content/uploads/2016/08/profile-placeholder.png`;
   profilePic.className = "profilePic";
   let username = document.createElement("h2");
-  username.className = "bg-dark mr-auto";
+  username.className = "bodyColorDark mr-auto";
   username.innerText = user.username;
   let fullname = document.createElement("h3");
   fullname.innerText = user.fullName;
@@ -242,7 +264,7 @@ function fetchUser() {
     },
   };
   console.log(options);
-  fetch(apiBaseURL + `/api/users/${loginData.username}`, options)
+  fetch(apiBaseURL + `/api/users/${username}`, options)
     .then((response) => response.json())
     .then((user) => {
       profileBuilder(user);
@@ -296,3 +318,51 @@ window.onload = (event) => {
   fetchUser();
   dropDownUser();
 };
+function switchDisplayMode() {
+  console.log(lightmode);
+  //make varaibles for every color that will change
+  if (lightmode.checked) {
+      // let dark = document.querySelectorAll(".bg-dark")
+      let navcolordark = document.querySelectorAll(".navColorDark")
+      for (const element of navcolordark) {
+          element.classList.add("navColorLight");
+          element.classList.remove("navColorDark");
+        }
+        let bodycolordark = document.querySelectorAll(".bodyColorDark")
+        for (const element of bodycolordark) {
+          element.classList.add("bodyColorLight");
+          element.classList.remove("bodyColorDark");
+        }
+
+        let divcolordark = document.querySelectorAll(".divColorDark")
+        for (const element of divcolordark) {
+          element.classList.add("divColorLight");
+          element.classList.remove("divColorDark");
+        }          
+  }
+  else if (lightmode.checked == false) {
+      let light = document.querySelectorAll(".navColorLight");
+      for (const element of light) {
+          element.classList.add("navColorDark");
+          element.classList.remove("navColorLight");
+      }
+      let bodycolordark = document.querySelectorAll(".bodyColorLight")
+      for (const element of bodycolordark) {
+        element.classList.add("bodyColorDark");
+        element.classList.remove("bodyColorLight");
+      }
+
+      let divcolordark = document.querySelectorAll(".divColorLight")
+      for (const element of divcolordark) {
+        element.classList.add("divColorDark");
+        element.classList.remove("divColorLight");
+      } 
+  }
+  else console.log("Error! Mayday! Mayday!");
+}
+
+lightmode.onchange = (event) => {
+
+  switchDisplayMode();
+
+}
