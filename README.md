@@ -15,3 +15,23 @@ Posts page:
 
 Profile page:
 ![image](https://github.com/Joheinous/Capstone-3/assets/130480122/a7b791e4-e2d7-4ef6-906f-796afeb9ba88)
+
+
+Interesting piece of JS:
+```
+if (post.likes.find((likes) => likes.username === bearer.username)) {
+        likeCount.className = "p-2 btn btn-danger btn-sm mb-3 me-2";
+        let postLikeId = post.likes
+          .filter((object) => object.username === bearer.username)
+          .map((object) => object._id);
+        likeCount.onclick = function () {
+          deleteLike(postLikeId);
+        };
+        console.log(postLikeId);
+      } else {
+        likeCount.className = "p-2 btn btn-secondary btn-sm mb-3 me-2";
+        likeCount.onclick = function () {
+          likePost(post._id);
+        };
+      }
+```
