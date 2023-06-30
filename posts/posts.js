@@ -183,45 +183,20 @@ function deleteLike(likeId) {
         });
 }
 
-// let lightmode = document.querySelector("#lightmode");
-
-// function switchDisplayMode() {
-//     console.log(lightmode);
-//     if (lightmode.checked) {
-//         let dark = document.querySelectorAll(".bg-dark")
-//         console.log(dark);
-//         for (const element of dark) {
-//             element.classList.add("bg-light");
-//             element.classList.remove("bg-dark");
-//         }
-//     }
-//     else if (lightmode.checked == false) {
-//         let light = document.querySelectorAll(".bg-light");
-//         for (const element of light) {
-//             element.classList.add("bg-dark");
-//             element.classList.remove("bg-light");
-//         }
-//     }
-//     else console.log("Error! Mayday! Mayday!");
-// }
-
-// lightmode.onchange = (event) => {
-
-//     switchDisplayMode();
-
-// }
-
-
+//function to switch between light and dark mode
 function switchDisplayMode() {
+  //debug to console 
   console.log(lightmode);
-  //make varaibles for every color that will change
+  //if statement for when button is checked
   if (lightmode.checked) {
-      // let dark = document.querySelectorAll(".bg-dark")
-      let navcolordark = document.querySelectorAll(".navColorDark")
+      //use the function .querySelectorAll function to select and remove classes
+      //we only have 3 classes we are selecting so we only did 3 for of statements, but this could of also been done in one for loop
+      let navcolordark = document.querySelectorAll(".navColorDark")//select the class you want to remove and assign it to a variable
       for (const element of navcolordark) {
-          element.classList.add("navColorLight");
-          element.classList.remove("navColorDark");
-        }
+          element.classList.add("navColorLight");//add the "light mode" class
+          element.classList.remove("navColorDark");//remove the "dark mode" class
+        }//end of for of loop
+        //repeat for all the other classes that need to switch between dark to light mode
         let bodycolordark = document.querySelectorAll(".bodyColorDark")
         for (const element of bodycolordark) {
           element.classList.add("bodyColorLight");
@@ -233,8 +208,9 @@ function switchDisplayMode() {
           element.classList.add("divColorLight");
           element.classList.remove("divColorDark");
         }          
-  }
-  else if (lightmode.checked == false) {
+  }//end of if statement
+  else if (lightmode.checked == false) {//this could ov just beena else statement because the if button checked can only be true or false
+    //this is the same base as the if statement above but switching from light to dark
       let light = document.querySelectorAll(".navColorLight");
       for (const element of light) {
           element.classList.add("navColorDark");
@@ -252,11 +228,12 @@ function switchDisplayMode() {
         element.classList.remove("divColorLight");
       } 
   }
-  else console.log("Error! Mayday! Mayday!");
+  else console.log("Error! Mayday! Mayday!");//debug to console log and display this message
 }
 
+//assign a function to the button that constantly checks if the button is checked or not
 lightmode.onchange = (event) => {
 
-  switchDisplayMode();
+  switchDisplayMode();//call the switch mode function
 
 }
